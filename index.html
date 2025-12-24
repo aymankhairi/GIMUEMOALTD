@@ -556,30 +556,30 @@
                     <form 
                      id="contactForm"
                     method="POST"
-    data-endpoint="https://formspree.io/"
+    data-endpoint="https://formspree.io/f/mdkpyzvo"
     novalidate>
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control bg-secondary border-0" id="name" name="Name:"
+                                    <input type="text" class="form-control bg-secondary border-0" id="name" name="name:"
                                         placeholder="Your Name">
                                     <label for="name">Your Name</label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="email" class="form-control bg-secondary border-0" id="email" name="e-mail:"
+                                    <input type="email" class="form-control bg-secondary border-0" id="email" name="email:"
                                         placeholder="Your Email">
                                     <label for="email">Your Email</label>
                                 </div>
                             </div>
-                            <div class="col-12">
+                            <!-- <div class="col-12">
                                 <div class="form-floating">
                                     <input type="text" class="form-control bg-secondary border-0" id="subject" name="subject:"
                                         placeholder="Subject">
                                     <label for="subject">Subject</label>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="col-12">
                                 <div class="form-floating">
                                     <textarea class="form-control bg-secondary border-0"
@@ -589,11 +589,13 @@
                                 </div>
                             </div>
                             <div class="col-12">
-                                <button class="btn btn-outline-primary border-2 w-100 py-3" type="submit">Send
+                                <button id="sendBtn" class="btn btn-outline-primary border-2 w-100 py-3" type="submit">Send
                                     Message</button>
                             </div>
                         </div>
                     </form>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
                 </div>
             </div>
         </div>
@@ -699,6 +701,7 @@
         if (res.ok) {
           showToast('✅ Message sent successfully!', 'success');
           form.reset(); // clear fields
+          window.location.href = window.location.pathname + '?success=1';
         } else {
           // show error message from response if present
           const msg = (json && (json.error || json.message)) || 'Failed to send message. Please try again.';
@@ -786,5 +789,18 @@ document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
     });
 });
 </script>
+<script>
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('success') === '1') {
+    const alertBox = document.getElementById('successAlert');
+    if (alertBox) {
+      alertBox.classList.remove('d-none');
+    }
+
+    // optional: clean URL after showing message
+    window.history.replaceState({}, document.title, window.location.pathname);
+  }
+</script>
+
 </body>
 </html>
