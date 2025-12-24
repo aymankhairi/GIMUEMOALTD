@@ -89,6 +89,7 @@
 @media (max-width: 991.98px) {
     .navbar .navbar-nav .nav-link,
     .navbar.bg-dark .navbar-nav .nav-link {
+        position: relative;
         margin-right: 0;
         padding: 10px 0;
     }
@@ -96,6 +97,31 @@
     .navbar .navbar-nav {
         margin-top: 8px;
         border-top: 1px solid var(--bs-light);
+    }
+     .navbar-brand h2 {
+        font-size: 18px;
+    }
+
+    /* Toggler button */
+    .navbar-toggler {
+        border: none;
+        outline: none;
+    }
+      .navbar-collapse {
+        background-color: #111;
+        padding: 15px 20px;
+    }
+
+    /* Nav links mobile */
+    .navbar .navbar-nav .nav-link {
+        margin: 0;
+        padding: 12px 0;
+        font-size: 15px;
+        text-align: center;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }   
+     .navbar .navbar-nav .nav-link:last-child {
+        border-bottom: none;
     }
 }
 
